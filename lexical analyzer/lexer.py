@@ -1,10 +1,8 @@
-# Constants for character classes
 LETTER = 0
 DIGIT = 1
 UNKNOWN = 99
 END_OF_FILE = -1
 
-# Token codes
 INT_LIT = 10
 IDENT = 11
 ASSIGN_OP = 20
@@ -15,7 +13,6 @@ DIV_OP = 24
 LEFT_PAREN = 25
 RIGHT_PAREN = 26
 
-# Globals
 char_class = None
 lexeme = ''
 next_char = ''
@@ -23,13 +20,11 @@ next_token = None
 in_fp = None
 
 
-# Add the current character to the lexeme
 def add_char():
     global lexeme, next_char
     lexeme += next_char
 
 
-# Read the next character and classify it
 def get_char():
     global next_char, char_class
     next_char = in_fp.read(1)
@@ -44,14 +39,12 @@ def get_char():
         char_class = END_OF_FILE
 
 
-# Skip over whitespace characters
 def get_non_blank():
     global next_char
     while next_char.isspace():
         get_char()
 
 
-# Identify special symbols and return token code
 def lookup(ch):
     global next_token
     lookup_table = {
@@ -68,7 +61,6 @@ def lookup(ch):
     return next_token
 
 
-# Main lexical analyzer function
 def lex():
     global lexeme, next_token
     lexeme = ''
@@ -102,7 +94,6 @@ def lex():
     return next_token
 
 
-# Main function: opens file and processes tokens
 def main():
     global in_fp
     try:
